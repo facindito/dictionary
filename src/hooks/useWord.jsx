@@ -11,11 +11,14 @@ export function useWord () {
       fetch(`https://api.dictionaryapi.dev/api/v2/entries/en/${search}`)
         .then(resp => {
           if (!resp.ok) {
-            throw new Error(`This is an HTTP error: The status is ${resp.status}`)
+            console.error(`This is an HTTP error: The status is ${resp.status}`)
           }
           return resp.json()
         })
-        .then(data => setWord(data[0]))
+        .then(data => {
+          if (data.title) setError(data.message)
+          setWord(data[0])
+        })
     } catch (err) {
       setError(err.message)
     } finally {
