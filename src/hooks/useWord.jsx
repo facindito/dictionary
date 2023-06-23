@@ -1,24 +1,20 @@
 import { useCallback, useState } from 'react'
+import { getWord } from '../services/getWord'
 
 export function useWord () {
   const [word, setWord] = useState('')
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState(null)
 
-  const getWord = useCallback(({ search }) => {
+  const searchWord = useCallback(async ({ search }) => {
     try {
       setLoading(true)
-      fetch(`https://api.dictionaryapi.dev/api/v2/entries/en/${search}`)
-        .then(resp => {
-          if (!resp.ok) {
-            console.error(`This is an HTTP error: The status is ${resp.status}`)
-          }
-          return resp.json()
-        })
-        .then(data => {
-          if (data.title) setError(data.message)
-          setWord(data[0])
-        })
+      setError(null)
+      setWord('')
+      const newWord = await getWord({ search })
+      newWord.error
+        ? setError(newWord.message)
+        : setWord(newWord)
     } catch (err) {
       setError(err.message)
     } finally {
@@ -30,6 +26,6 @@ export function useWord () {
     word,
     loading,
     error,
-    getWord
+    searchWord
   }
 };

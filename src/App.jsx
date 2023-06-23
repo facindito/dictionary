@@ -2,12 +2,12 @@ import { useState } from 'react'
 import { useWord } from './hooks/useWord'
 
 export function App () {
-  const { word, loading, error, getWord } = useWord()
+  const { word, loading, error, searchWord } = useWord()
   const [search, setSearch] = useState('')
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    getWord({ search })
+    searchWord({ search })
   }
   const handleChange = (e) => {
     const newSearch = e.target.value
@@ -40,8 +40,8 @@ export function App () {
           />
         </div>
       </form>
-      {loading && <section>Loading...</section>}
       {error && <section className='max-w-2xl w-full mx-auto px-4 text-red-500'>{error}</section>}
+      {loading && <section className='max-w-2xl w-full mx-auto px-4 text-sky-500'>Loading...</section>}
       {word &&
         <main className='max-w-2xl w-full mx-auto p-4 flex flex-col gap-6 mb-4'>
           <section>
@@ -60,8 +60,7 @@ export function App () {
             </span>
           </section>
           {
-            word?.meanings.map(meaning => {
-              const { partOfSpeech, definitions, synonyms } = meaning
+            word.meanings.map(({ partOfSpeech, definitions, synonyms, antonyms }) => {
               return (
                 <section key={partOfSpeech}>
                   <div className='flex gap-4 items-center mb-4'>
@@ -89,9 +88,25 @@ export function App () {
                         <span className='opacity-50 font-medium'>Synonyms</span>
                         <div className='font-bold text-sky-500 text-base flex flex-wrap gap-2'>
                           {
-                        synonyms?.map((synonym) => (
-                          <span key={synonym}>
+                        synonyms?.map((synonym, index) => (
+                          <span key={synonym + index}>
                             {synonym}
+                          </span>
+                        ))
+                      }
+                        </div>
+                      </div>
+                    )
+                  }
+                  {
+                    antonyms.length > 0 && (
+                      <div className='flex items-baseline gap-4 mt-4'>
+                        <span className='opacity-50 font-medium'>Antonyms</span>
+                        <div className='font-bold text-sky-500 text-base flex flex-wrap gap-2'>
+                          {
+                        antonyms?.map((antonyms, index) => (
+                          <span key={antonyms + index}>
+                            {antonyms}
                           </span>
                         ))
                       }
