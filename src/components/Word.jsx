@@ -1,19 +1,16 @@
+import { AudioButton } from './AudioButton'
 import { Meaning } from './Meaning'
 
-export function Word ({ word, phonetic, meanings, sourceUrls }) {
+export function Word ({ word, phonetic, meanings, sourceUrls, us }) {
   return (
     <main className='max-w-2xl w-full mx-auto p-4 flex flex-col gap-6 mb-4'>
       <section>
         <div className='flex justify-between items-center mb-2'>
           <h2 className='font-bold text-5xl'>{word}</h2>
-          <button className='p-4 bg-sky-200 rounded-full'>
-            <svg className='text-sky-500 w-6 h-6' xmlns='http://www.w3.org/2000/svg' fill='currentColor' viewBox='0 0 24 24' strokeWidth='1.5' stroke='currentColor'>
-              <path strokeLinecap='round' strokeLinejoin='round' d='M5.25 5.653c0-.856.917-1.398 1.667-.986l11.54 6.348a1.125 1.125 0 010 1.971l-11.54 6.347a1.125 1.125 0 01-1.667-.985V5.653z' />
-            </svg>
-          </button>
+          {us?.audio && <AudioButton src={us.audio} />}
         </div>
         <span className='text-sky-500 font-semibold'>
-          {phonetic}
+          {phonetic || us.text}
         </span>
       </section>
       {
