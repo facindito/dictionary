@@ -1,11 +1,11 @@
 import { useState } from 'react'
 
-export function SearchForm ({ searchWord }) {
+export function SearchForm ({ onSubmit }) {
   const [search, setSearch] = useState('')
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    searchWord({ search })
+    onSubmit({ search })
   }
   const handleChange = (e) => {
     const newSearch = e.target.value
