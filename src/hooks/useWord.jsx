@@ -1,7 +1,7 @@
-import { useCallback, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import { getWord } from '../services/getWord'
 
-export function useWord () {
+export function useWord ({ query }) {
   const [word, setWord] = useState('')
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState(null)
@@ -22,10 +22,14 @@ export function useWord () {
     }
   }, [])
 
+  useEffect(() => {
+    if (!query) return
+    searchWord({ search: query })
+  }, [query])
+
   return {
     word,
     loading,
-    error,
-    searchWord
+    error
   }
 };

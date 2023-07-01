@@ -1,12 +1,14 @@
 import { useState } from 'react'
 import { SearchIcon } from './Icons'
+import { useNavigate } from 'react-router-dom'
 
-export function SearchForm ({ onSubmit }) {
+export function SearchForm () {
+  const navigate = useNavigate()
   const [search, setSearch] = useState('')
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    onSubmit({ search })
+    navigate(`/word/${search}`)
   }
   const handleChange = (e) => {
     const newSearch = e.target.value
@@ -25,7 +27,7 @@ export function SearchForm ({ onSubmit }) {
           className='block w-full p-4 pl-10 text-base text-gray-900 font-semibold border border-sky-300 rounded-xl bg-gray-50 outline-none focus:ring-2 focus:ring-sky-300'
           placeholder='keyboard, water, hello...'
           onChange={handleChange}
-          value={search}
+          // value={searchParams.get('q')}
           required
         />
       </div>
