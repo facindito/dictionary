@@ -2,6 +2,7 @@ import { AudioButton } from './AudioButton'
 import { Meaning } from './Meaning'
 
 export function Word ({ word, phonetic, meanings, sourceUrls, us }) {
+  console.log({ phonetic, us })
   return (
     <main className='p-4 flex flex-col gap-6 mb-4'>
       <section>
@@ -9,9 +10,13 @@ export function Word ({ word, phonetic, meanings, sourceUrls, us }) {
           <h2 className='font-bold text-5xl'>{word}</h2>
           {us?.audio && <AudioButton src={us.audio} />}
         </div>
-        <span className='text-sky-500 font-semibold'>
-          {phonetic || us.text}
-        </span>
+        {
+          (phonetic || us?.text) && (
+            <span className='text-sky-500 font-semibold'>
+              {phonetic || us.text}
+            </span>
+          )
+        }
       </section>
       {
         meanings.map((meaning, index) => <Meaning key={meaning.partOfSpeech + index} {...meaning} />)
