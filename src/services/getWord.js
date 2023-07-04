@@ -23,7 +23,7 @@ export async function getWord ({ search }) {
       uk: ukPhonetic,
       us: usPhonetic,
       meanings,
-      sourceUrls
+      sourceUrls: sourceUrls[0]
     }
 
     return mappedWord
