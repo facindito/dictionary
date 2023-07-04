@@ -1,3 +1,5 @@
+import { Link } from 'react-router-dom'
+
 export function Meaning ({ partOfSpeech, definitions, synonyms, antonyms }) {
   return (
     <section>
@@ -25,9 +27,13 @@ export function Meaning ({ partOfSpeech, definitions, synonyms, antonyms }) {
             <div className='font-bold text-sky-500 text-base flex flex-wrap gap-2'>
               {
                 synonyms?.map((synonym, index) => (
-                  <span key={synonym + index}>
+                  <Link
+                    key={synonym + index}
+                    to={`/word/${synonym}`}
+                    className='decoration-solid hover:underline hover:underline-offset-4'
+                  >
                     {synonym}
-                  </span>
+                  </Link>
                 ))
               }
             </div>
@@ -41,9 +47,12 @@ export function Meaning ({ partOfSpeech, definitions, synonyms, antonyms }) {
             <div className='font-bold text-sky-500 text-base flex flex-wrap gap-2'>
               {
                 antonyms?.map((antonyms, index) => (
-                  <span key={antonyms + index}>
+                  <Link
+                    key={antonyms + index}
+                    to={`/word/${antonyms}`}
+                  >
                     {antonyms}
-                  </span>
+                  </Link>
                 ))
               }
             </div>
