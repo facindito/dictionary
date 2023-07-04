@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { SearchIcon } from './Icons'
 import { useNavigate } from 'react-router-dom'
 
-export function SearchForm () {
+export function SearchForm (props) {
   const navigate = useNavigate()
   const [search, setSearch] = useState('')
 
@@ -15,7 +15,7 @@ export function SearchForm () {
     setSearch(newSearch)
   }
   return (
-    <form className='p-4 max-w-2xl w-full mx-auto ' onSubmit={handleSubmit}>
+    <form className='p-4' onSubmit={handleSubmit} {...props}>
       <label htmlFor='default-search' className='mb-2 text-base font-medium text-gray-900 sr-only'>Search</label>
       <div className='relative'>
         <div className='absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none'>
@@ -30,6 +30,7 @@ export function SearchForm () {
           // value={searchParams.get('q')}
           required
         />
+        <button type='submit' className='text-white absolute right-2.5 bottom-2.5 bg-sky-700 hover:bg-sky-800 focus:ring-4 focus:outline-none focus:ring-sky-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-sky-600 dark:hover:bg-sky-700 dark:focus:ring-sky-800'>Search</button>
       </div>
     </form>
   )
