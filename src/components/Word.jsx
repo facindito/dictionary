@@ -3,7 +3,7 @@ import { Meaning } from './Meaning'
 
 export function Word ({ word, phonetic, meanings, sourceUrls, us }) {
   return (
-    <main className='max-w-2xl w-full mx-auto p-4 flex flex-col gap-6 mb-4'>
+    <main className='p-4 flex flex-col gap-6 mb-4'>
       <section>
         <div className='flex justify-between items-center mb-2'>
           <h2 className='font-bold text-5xl'>{word}</h2>

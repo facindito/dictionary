@@ -10,8 +10,8 @@ export default function SearchResult () {
   return (
     <>
       <SearchForm />
-      {error && <section className='max-w-2xl w-full mx-auto px-4 text-red-500'>{error}</section>}
-      {loading && <section className='max-w-2xl w-full mx-auto px-4 text-sky-500'>Loading...</section>}
+      {error && <section className=' m-4 p-4 text-red-500 bg-red-200 border border-red-500 rounded-md'>{error}</section>}
+      {loading && <section className='p-4 text-sky-500'>Loading...</section>}
       {word && <Word {...word} />}
     </>
   )
