@@ -16,7 +16,7 @@ export function AudioButton ({ src }) {
   return (
     <>
       <audio ref={audioRef} src={src} onEnded={handleAudioEnd} />
-      <button onClick={handleClick} className='p-4 bg-sky-200 rounded-full'>
+      <button onClick={handleClick} className='p-4 bg-sky-200 rounded-full border-2 border-transparent hover:border-sky-500 hover:bg-sky-100'>
         {
           isPlaying
             ? <PauseIcon className='text-sky-500 w-6 h-6' />

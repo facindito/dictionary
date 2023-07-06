@@ -13,8 +13,8 @@ export function Meaning ({ partOfSpeech, definitions, synonyms, antonyms }) {
           {
             definitions?.map(({ definition, example }, index) => (
               <li key={index} className='list-disc text-sky-500 mb-2'>
-                <p className='text-black'>{definition}</p>
-                {example && <p className='text-black opacity-50'>{example}</p>}
+                <p className='text-black dark:text-white'>{definition}</p>
+                {example && <p className='text-black dark:text-white opacity-50'>{example}</p>}
               </li>
             ))
           }
@@ -50,6 +50,7 @@ export function Meaning ({ partOfSpeech, definitions, synonyms, antonyms }) {
                   <Link
                     key={antonyms + index}
                     to={`/word/${antonyms}`}
+                    className='decoration-solid hover:underline hover:underline-offset-4'
                   >
                     {antonyms}
                   </Link>
