@@ -8,8 +8,8 @@ Aplicación web para buscar palabras en un diccionario en ingles, la cual muestr
 
 ## Capturas
 
-<img src='public/img/page-home.webp' alt='Home Page' />
-<img src='public/img/page-search.webp' alt='Search Page'/>
+<img src='public/img/home.webp' alt='Home Page' />
+<img src='public/img/search.webp' alt='Search Page'/>
 
 ## Tecnologías
 
