@@ -14,7 +14,7 @@ export const router = createBrowserRouter([
 
       },
       {
-        path: '/word/:searchWord',
+        path: '/search',
         element: <SearchResult />
       }
     ]

@@ -1,18 +1,20 @@
 import { useState } from 'react'
 import { SearchIcon } from './Icons'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, useSearchParams } from 'react-router-dom'
 
 export function SearchForm (props) {
+  const [searchParams, setSearchParams] = useSearchParams()
+  const [query, setQuery] = useState(searchParams.get('q') || '')
   const navigate = useNavigate()
-  const [search, setSearch] = useState('')
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    navigate(`/word/${search}`)
+    navigate('/search')
+    setSearchParams({ q: query })
   }
   const handleChange = (e) => {
-    const newSearch = e.target.value
-    setSearch(newSearch)
+    const newQuery = e.target.value
+    setQuery(newQuery)
   }
   return (
     <form className='p-4 ' onSubmit={handleSubmit} {...props}>
@@ -22,12 +24,12 @@ export function SearchForm (props) {
           <SearchIcon className='w-5 h-5 dark:text-gray-500' />
         </div>
         <input
-          type='search'
           id='default-search'
+          type='text'
           className='block w-full p-4 pl-10 text-base text-gray-900 font-semibold border border-sky-300 rounded-xl bg-gray-50 outline-none focus:ring-2 focus:ring-sky-300 dark:bg-gray-700 dark:text-white'
           placeholder='keyboard, water, hello...'
           onChange={handleChange}
-          // value={searchParams.get('q')}
+          value={query}
           required
         />
         <button type='submit' className='text-white absolute right-2.5 bottom-2.5 bg-sky-700 hover:bg-sky-800 focus:ring-4 focus:outline-none focus:ring-sky-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-sky-600 dark:hover:bg-sky-700 dark:focus:ring-sky-800'>Search</button>

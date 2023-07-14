@@ -29,7 +29,7 @@ export function Meaning ({ partOfSpeech, definitions, synonyms, antonyms }) {
                 synonyms?.map((synonym, index) => (
                   <Link
                     key={synonym + index}
-                    to={`/word/${synonym}`}
+                    to={`/search?q=${synonym}`}
                     className='decoration-solid hover:underline hover:underline-offset-4'
                   >
                     {synonym}
@@ -49,7 +49,7 @@ export function Meaning ({ partOfSpeech, definitions, synonyms, antonyms }) {
                 antonyms?.map((antonyms, index) => (
                   <Link
                     key={antonyms + index}
-                    to={`/word/${antonyms}`}
+                    to={`/search?q=${antonyms}`}
                     className='decoration-solid hover:underline hover:underline-offset-4'
                   >
                     {antonyms}

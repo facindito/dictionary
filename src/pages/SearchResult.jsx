@@ -1,11 +1,11 @@
-import { useParams } from 'react-router-dom'
+import { useSearchParams } from 'react-router-dom'
 import { Word } from '../components/Word'
 import { useWord } from '../hooks/useWord'
 import { SearchForm } from '../components/SearchForm'
 
 export default function SearchResult () {
-  const { searchWord } = useParams()
-  const { word, loading, error } = useWord({ query: searchWord })
+  const [searchParams] = useSearchParams()
+  const { word, loading, error } = useWord({ query: searchParams.get('q') })
 
   return (
     <>
