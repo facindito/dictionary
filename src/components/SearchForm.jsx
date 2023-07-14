@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { SearchIcon } from './Icons'
 import { useNavigate, useSearchParams } from 'react-router-dom'
 
@@ -16,6 +16,10 @@ export function SearchForm (props) {
     const newQuery = e.target.value
     setQuery(newQuery)
   }
+  useEffect(() => {
+    setQuery(searchParams.get('q'))
+  }, [searchParams])
+
   return (
     <form className='p-4 ' onSubmit={handleSubmit} {...props}>
       <label htmlFor='default-search' className='mb-2 text-base font-medium text-gray-900 sr-only'>Search</label>
